@@ -1,0 +1,11 @@
+name: avalon
+channels:
+  - defaults
+dependencies:
+  - python=3.11
+  - pip
+  # 第三方依赖经 pip 安装：LangGraph(多智能体编排) + LangChain ChatOpenAI(LLM 客户端)。
+  # 未配置 Key 时自动回退启发式策略（ai.py），离线亦可完整运行。
+  - pip:
+      - langgraph>=1.2,<2
+      - langchain-openai>=1.2,<2
