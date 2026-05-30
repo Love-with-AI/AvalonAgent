@@ -1,0 +1,361 @@
+/* ============================================================
+   阿瓦隆 Avalon · 高端中世纪/亚瑟王主题
+   配色：午夜靛蓝 + 鎏金 + 王者蓝(好) + 血红(恶) + 羊皮纸
+   ============================================================ */
+:root {
+  --night-0: #060912;
+  --night-1: #0b1124;
+  --night-2: #111a33;
+  --panel-1: #15203c;
+  --panel-2: #0e1730;
+  --ink: #e9e0c8;          /* 羊皮纸字色 */
+  --ink-dim: #a9b0c8;
+  --muted: #8893b4;
+
+  --gold: #c9a44c;
+  --gold-bright: #f3dc97;
+  --gold-deep: #6f561f;
+  --gold-line: rgba(201,164,76,.38);
+
+  --royal: #5b9bd8;        /* 好人/通过 */
+  --royal-deep: #1d3f6e;
+  --blood: #c4434f;        /* 坏人/失败 */
+  --blood-deep: #5e1b22;
+  --violet: #b18cf0;       /* 梅林候选 */
+
+  --parch-1: #2c2516;
+  --parch-2: #221c10;
+
+  --shadow: 0 10px 30px rgba(0,0,0,.45);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  font-family: "EB Garamond", "Noto Serif SC", "Songti SC", "STSong", "SimSun", Georgia, serif;
+  font-size: 16px;
+  background:
+    radial-gradient(1200px 700px at 78% -8%, #1a2340 0%, transparent 60%),
+    radial-gradient(900px 600px at 10% 0%, #15213f 0%, transparent 55%),
+    linear-gradient(180deg, #0a0f20 0%, var(--night-0) 100%);
+  background-attachment: fixed;
+}
+
+/* 背景美术 */
+.bg-art {
+  position: fixed; inset: 0; width: 100%; height: 100%;
+  z-index: -1; opacity: .5; pointer-events: none;
+}
+.svg-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+/* 通用纹章 svg */
+.emblem { width: 100%; height: 100%; display: block; }
+
+/* ============================ 顶栏 ============================ */
+header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 28px; position: sticky; top: 0; z-index: 10;
+  background: linear-gradient(180deg, rgba(8,11,22,.92), rgba(8,11,22,.66));
+  border-bottom: 1px solid var(--gold-line);
+  box-shadow: 0 2px 0 rgba(201,164,76,.12), 0 10px 24px rgba(0,0,0,.5);
+  backdrop-filter: blur(8px);
+}
+.brand { display: flex; align-items: center; gap: 14px; }
+.crest-icon { width: 46px; height: 46px; color: var(--gold-bright);
+  filter: drop-shadow(0 0 8px rgba(243,220,151,.45)); }
+.brand-text h1 {
+  margin: 0; font-family: "Cinzel Decorative", "Cinzel", serif; font-weight: 900;
+  font-size: 30px; letter-spacing: 6px; line-height: 1;
+  background: linear-gradient(180deg, #fbe7b0, var(--gold) 60%, #9a7b32);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  text-shadow: 0 1px 0 rgba(0,0,0,.4);
+}
+.brand-text .subtitle { font-size: 12.5px; color: var(--ink-dim); letter-spacing: 3px; }
+.header-right { display: flex; align-items: center; gap: 12px; }
+
+.badge {
+  font-family: "Cinzel", serif; font-size: 12.5px; letter-spacing: .5px;
+  padding: 6px 14px; border-radius: 999px; color: var(--ink-dim);
+  background: linear-gradient(180deg, #1a2540, #111a33);
+  border: 1px solid var(--gold-line);
+}
+
+/* ============================ 布局 ============================ */
+main {
+  display: grid; grid-template-columns: 1fr 1.12fr 1fr;
+  gap: 18px; padding: 22px; max-width: 1560px; margin: 0 auto;
+}
+.col { display: flex; flex-direction: column; gap: 18px; }
+
+/* 卡片：暗色 + 鎏金描边 + 顶部光线 + 四角点缀 */
+.card {
+  position: relative;
+  background:
+    linear-gradient(180deg, rgba(28,40,72,.92), rgba(12,21,44,.95));
+  border: 1px solid var(--gold-line);
+  border-radius: 14px; padding: 16px 18px 18px;
+  box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,.04);
+}
+.card::before {  /* 顶部鎏金细线 */
+  content: ""; position: absolute; left: 16px; right: 16px; top: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: .7;
+}
+.card h2 {
+  margin: 2px 0 14px; font-family: "Cinzel", serif; font-weight: 700;
+  font-size: 16px; letter-spacing: 2px; color: var(--gold-bright);
+  display: flex; align-items: center; gap: 10px;
+}
+.card h2::after {
+  content: ""; flex: 1; height: 1px;
+  background: linear-gradient(90deg, var(--gold-line), transparent);
+}
+.card.secret {
+  background: linear-gradient(180deg, #2b2415, #1c1710);
+  border-color: rgba(201,164,76,.5);
+  box-shadow: var(--shadow), inset 0 0 40px rgba(120,90,30,.18);
+}
+.card.secret h2 { color: var(--gold-bright); }
+
+/* ============================ 玩家列表 ============================ */
+.players { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.player {
+  display: flex; align-items: center; gap: 12px;
+  padding: 8px 10px; border-radius: 12px;
+  background: linear-gradient(180deg, rgba(22,32,58,.7), rgba(13,20,40,.7));
+  border: 1px solid rgba(201,164,76,.16);
+  transition: border-color .15s, transform .08s, box-shadow .15s;
+}
+.player.selectable { cursor: pointer; }
+.player.selectable:hover { border-color: var(--royal); transform: translateY(-1px); }
+.player.selected { border-color: var(--royal); box-shadow: 0 0 0 2px rgba(91,155,216,.45), 0 0 18px rgba(91,155,216,.3); }
+.player.assassin-pick { cursor: crosshair; }
+.player.assassin-pick:hover { border-color: var(--blood); box-shadow: 0 0 16px rgba(196,67,79,.4); }
+
+/* 圆形纹章头像 */
+.medallion {
+  position: relative; flex: 0 0 auto; width: 50px; height: 50px; border-radius: 50%;
+  display: grid; place-items: center; color: var(--gold-bright);
+  background: radial-gradient(circle at 50% 35%, #243358, #0e1730 70%);
+  border: 2px solid var(--gold); box-shadow: inset 0 0 12px rgba(0,0,0,.5), 0 2px 6px rgba(0,0,0,.4);
+}
+.medallion .emblem { width: 30px; height: 30px; }
+.medallion .seat {
+  position: absolute; right: -4px; bottom: -4px; width: 20px; height: 20px; border-radius: 50%;
+  display: grid; place-items: center; font-family: "Cinzel", serif; font-size: 11px; font-weight: 700;
+  color: #14101f; background: linear-gradient(180deg, var(--gold-bright), var(--gold));
+  border: 1px solid #7c6020;
+}
+.medallion .crown {
+  position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+  width: 22px; height: 22px; color: var(--gold-bright);
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,.6));
+}
+.medallion.is-human { border-color: var(--royal); box-shadow: 0 0 0 2px rgba(91,155,216,.3), 0 0 16px rgba(91,155,216,.35); }
+.medallion.is-leader { box-shadow: 0 0 0 2px rgba(243,220,151,.4), 0 0 18px rgba(243,220,151,.4); }
+.medallion.mark-evil { border-color: var(--blood); color: #f0a6ad; background: radial-gradient(circle at 50% 35%, #3a1620, #160a10 70%); }
+.medallion.mark-cand { border-color: var(--violet); color: #d8c2ff; }
+.medallion.side-good { border-color: var(--royal); color: #bcd9f5; background: radial-gradient(circle at 50% 35%, #1d3a63, #0c1a32 70%); }
+.medallion.side-evil { border-color: var(--blood); color: #f1b3b8; background: radial-gradient(circle at 50% 35%, #43141c, #1a0a0e 70%); }
+
+.pinfo { min-width: 0; flex: 1; }
+.pname { font-weight: 600; font-size: 15.5px; letter-spacing: .3px; }
+.tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
+.tag {
+  font-family: "Cinzel", serif; font-size: 10.5px; letter-spacing: .4px;
+  padding: 2px 8px; border-radius: 6px; color: var(--ink-dim);
+  background: rgba(255,255,255,.05); border: 1px solid rgba(201,164,76,.18);
+}
+.tag.human { color: #bcd9f5; border-color: rgba(91,155,216,.5); background: rgba(91,155,216,.12); }
+.tag.leader { color: var(--gold-bright); border-color: rgba(243,220,151,.5); background: rgba(201,164,76,.14); }
+.tag.evil-known { color: #f0a6ad; border-color: rgba(196,67,79,.55); background: rgba(196,67,79,.15); }
+.tag.merlin-cand { color: #d8c2ff; border-color: rgba(177,140,240,.5); background: rgba(177,140,240,.14); }
+.tag.role-good { color: #bcd9f5; border-color: rgba(91,155,216,.55); background: rgba(91,155,216,.16); }
+.tag.role-evil { color: #f1b3b8; border-color: rgba(196,67,79,.6); background: rgba(196,67,79,.18); }
+
+/* ============================ 任务/征程：盾牌 ============================ */
+.missions { display: flex; gap: 10px; justify-content: space-between; }
+.quest { position: relative; flex: 1; text-align: center; }
+.quest-shield { position: relative; width: 100%; max-width: 72px; height: 74px; margin: 0 auto; }
+.quest-shield .emblem { color: #16223f; }
+.quest-shield .emblem path { fill: currentColor; stroke: var(--gold); stroke-width: 2; }
+.quest .num {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-62%);
+  font-family: "Cinzel", serif; font-weight: 900; font-size: 22px; color: var(--gold-bright);
+  text-shadow: 0 1px 2px rgba(0,0,0,.6);
+}
+.quest .cap { font-family: "Cinzel", serif; font-size: 11px; color: var(--ink-dim); margin-top: 2px; }
+.quest .sub { font-size: 10.5px; color: var(--muted); line-height: 1.3; min-height: 26px; }
+.quest.ok .quest-shield .emblem { color: #163b6b; }
+.quest.ok .quest-shield .emblem path { stroke: var(--royal); filter: drop-shadow(0 0 6px rgba(91,155,216,.6)); }
+.quest.ok .num { color: #d6e9ff; }
+.quest.fail .quest-shield .emblem { color: #471620; }
+.quest.fail .quest-shield .emblem path { stroke: var(--blood); filter: drop-shadow(0 0 6px rgba(196,67,79,.6)); }
+.quest.fail .num { color: #ffd2d6; }
+.quest.current .quest-shield .emblem path { stroke: var(--gold-bright); animation: questPulse 1.6s ease-in-out infinite; }
+@keyframes questPulse { 0%,100% { filter: drop-shadow(0 0 2px rgba(243,220,151,.4)); } 50% { filter: drop-shadow(0 0 10px rgba(243,220,151,.9)); } }
+
+.score { margin-top: 14px; display: flex; gap: 18px; font-family: "Cinzel", serif; font-size: 14px; }
+.score .g { color: var(--royal); }
+.score .e { color: var(--blood); }
+.vote-track { margin-top: 8px; font-size: 13px; color: var(--muted); font-style: italic; }
+
+/* ============================ 行动区 / 按钮 ============================ */
+.action-body { display: flex; flex-direction: column; gap: 14px; }
+.hint { color: var(--ink-dim); font-size: 14.5px; line-height: 1.6; }
+.hint b { color: var(--gold-bright); }
+
+.btn {
+  font-family: "Cinzel", serif; font-size: 14px; font-weight: 700; letter-spacing: 1px;
+  border: 1px solid transparent; border-radius: 10px; padding: 11px 18px; cursor: pointer;
+  transition: transform .06s, filter .15s, box-shadow .15s; color: #1a1305;
+}
+.btn:active { transform: translateY(1px); }
+.btn:disabled { opacity: .5; cursor: not-allowed; filter: grayscale(.3); }
+.btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-primary { background: linear-gradient(180deg, var(--gold-bright), var(--gold)); border-color: #7c6020; box-shadow: 0 3px 0 #6f561f, 0 6px 16px rgba(0,0,0,.4); }
+.btn-primary:hover { filter: brightness(1.08); box-shadow: 0 3px 0 #6f561f, 0 0 18px rgba(243,220,151,.5); }
+.btn-ok { color: #06223f; background: linear-gradient(180deg, #8fc1ee, var(--royal)); border-color: #1d3f6e; box-shadow: 0 3px 0 #173357, 0 6px 16px rgba(0,0,0,.4); }
+.btn-ok:hover { filter: brightness(1.08); box-shadow: 0 3px 0 #173357, 0 0 18px rgba(91,155,216,.55); }
+.btn-bad { color: #2a0509; background: linear-gradient(180deg, #e58a92, var(--blood)); border-color: #5e1b22; box-shadow: 0 3px 0 #4a151b, 0 6px 16px rgba(0,0,0,.4); }
+.btn-bad:hover { filter: brightness(1.08); box-shadow: 0 3px 0 #4a151b, 0 0 18px rgba(196,67,79,.55); }
+.btn-ghost { color: var(--gold-bright); background: rgba(201,164,76,.08); border: 1px solid var(--gold-line); box-shadow: none; }
+.btn-ghost:hover { background: rgba(201,164,76,.16); }
+
+.waiting-spinner { display: flex; align-items: center; gap: 12px; color: var(--ink-dim); font-style: italic; }
+.waiting-spinner .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--gold-bright); box-shadow: 0 0 10px var(--gold); animation: pulse 1s infinite; }
+@keyframes pulse { 0%,100% { opacity: .25; transform: scale(.8); } 50% { opacity: 1; transform: scale(1.1); } }
+
+.speak-box {
+  width: 100%; min-height: 70px; resize: vertical; padding: 11px 13px;
+  font-family: inherit; font-size: 15px; color: var(--ink);
+  background: linear-gradient(180deg, #241d11, #1b1610);
+  border: 1px solid var(--gold-line); border-radius: 10px;
+}
+.speak-box:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 2px rgba(201,164,76,.25); }
+
+/* ============================ 密令（秘密信息）羊皮纸卡 ============================ */
+.role-card { text-align: center; }
+.role-roundel {
+  width: 92px; height: 92px; margin: 4px auto 10px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: radial-gradient(circle at 50% 35%, #2c3c64, #0e1730 72%);
+  border: 3px solid var(--gold); box-shadow: 0 0 22px rgba(201,164,76,.35), inset 0 0 18px rgba(0,0,0,.5);
+}
+.role-roundel .emblem { width: 54px; height: 54px; color: var(--gold-bright); }
+.role-card.side-good .role-roundel { background: radial-gradient(circle at 50% 35%, #1f4071, #0c1a32 72%); border-color: var(--royal); box-shadow: 0 0 22px rgba(91,155,216,.4); }
+.role-card.side-good .role-roundel .emblem { color: #cfe6ff; }
+.role-card.side-evil .role-roundel { background: radial-gradient(circle at 50% 35%, #481620, #1a0a0e 72%); border-color: var(--blood); box-shadow: 0 0 22px rgba(196,67,79,.4); }
+.role-card.side-evil .role-roundel .emblem { color: #ffc2c7; }
+.role-name { font-family: "Cinzel", serif; font-weight: 900; font-size: 26px; letter-spacing: 2px; color: var(--gold-bright); }
+.role-name small { display: block; font-size: 12px; letter-spacing: 3px; color: var(--muted); font-weight: 400; margin-top: 2px; }
+.role-side { display: inline-block; margin: 8px 0 6px; padding: 3px 14px; border-radius: 999px; font-family: "Cinzel", serif; font-size: 13px; letter-spacing: 1px; }
+.role-side.good { color: #cfe6ff; background: rgba(91,155,216,.16); border: 1px solid rgba(91,155,216,.5); }
+.role-side.evil { color: #ffc2c7; background: rgba(196,67,79,.16); border: 1px solid rgba(196,67,79,.5); }
+.role-card .info { color: var(--ink-dim); font-size: 13.5px; line-height: 1.7; margin-top: 6px; text-align: left;
+  border-top: 1px dashed var(--gold-line); padding-top: 10px; }
+.role-card .known { margin-top: 10px; text-align: left; display: flex; flex-direction: column; gap: 6px; }
+.know-chip { display: flex; align-items: center; gap: 8px; font-size: 13.5px; padding: 5px 10px; border-radius: 8px; }
+.know-chip .emblem { width: 18px; height: 18px; flex: 0 0 auto; }
+.know-chip.evil { color: #f0a6ad; background: rgba(196,67,79,.12); border: 1px solid rgba(196,67,79,.4); }
+.know-chip.cand { color: #d8c2ff; background: rgba(177,140,240,.12); border: 1px solid rgba(177,140,240,.4); }
+
+/* ============================ 发言（密谈）羊皮纸卷 ============================ */
+.chat { max-height: 360px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; padding-right: 4px; }
+.bubble {
+  position: relative; display: flex; gap: 10px; align-items: flex-start;
+  padding: 10px 12px; border-radius: 10px;
+  background: linear-gradient(180deg, #2a2316, #201a0f);
+  border: 1px solid rgba(201,164,76,.28); border-left: 3px solid var(--gold);
+  animation: rise .25s ease both;
+}
+@keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.bubble.me { background: linear-gradient(180deg, #16294a, #0e1d38); border-color: rgba(91,155,216,.4); border-left-color: var(--royal); }
+.bubble .av { flex: 0 0 auto; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center;
+  font-family: "Cinzel", serif; font-size: 12px; font-weight: 700; color: #14101f;
+  background: linear-gradient(180deg, var(--gold-bright), var(--gold)); border: 1px solid #7c6020; }
+.bubble.me .av { color: #06223f; background: linear-gradient(180deg, #8fc1ee, var(--royal)); border-color: #1d3f6e; }
+.bubble .body { min-width: 0; }
+.bubble .who { font-family: "Cinzel", serif; font-size: 12px; color: var(--gold-bright); margin-bottom: 2px; }
+.bubble .who .ctx { color: var(--muted); margin-left: 6px; font-weight: 400; font-family: inherit; }
+.bubble .txt { font-size: 14.5px; line-height: 1.55; color: var(--ink); }
+.bubble .accuse { margin-top: 5px; font-size: 12px; color: #f0a6ad; }
+
+/* ============================ 投票编年 / 日志 ============================ */
+.vote-history { max-height: 300px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; }
+.vrow { background: rgba(255,255,255,.03); border: 1px solid var(--gold-line); border-radius: 9px; padding: 8px 11px; font-size: 12.5px; }
+.vrow .vtitle { color: var(--ink-dim); margin-bottom: 5px; }
+.vrow .vtitle .approved { color: var(--royal); font-weight: 700; }
+.vrow .vtitle .rejected { color: var(--blood); font-weight: 700; }
+.vtag { display: inline-block; padding: 1px 7px; border-radius: 5px; margin: 2px; font-size: 11px; }
+.vtag.va { color: #cfe6ff; background: rgba(91,155,216,.16); border: 1px solid rgba(91,155,216,.4); }
+.vtag.vr { color: #f0a6ad; background: rgba(196,67,79,.16); border: 1px solid rgba(196,67,79,.4); }
+
+.log { max-height: 360px; overflow-y: auto; font-size: 13.5px; line-height: 1.7; }
+.log .lrow { padding: 5px 0; border-bottom: 1px dashed var(--gold-line); color: var(--ink-dim); }
+.log .lrow:last-child { border: none; }
+
+/* 滚动条 */
+.chat::-webkit-scrollbar, .log::-webkit-scrollbar, .vote-history::-webkit-scrollbar { width: 8px; }
+.chat::-webkit-scrollbar-thumb, .log::-webkit-scrollbar-thumb, .vote-history::-webkit-scrollbar-thumb {
+  background: rgba(201,164,76,.3); border-radius: 8px; }
+
+/* ============================ 结算横幅 ============================ */
+.result { text-align: center; padding: 6px 0 2px; }
+.result-crest { width: 70px; height: 70px; margin: 0 auto 8px; }
+.result-crest .emblem { color: var(--gold-bright); filter: drop-shadow(0 0 12px rgba(243,220,151,.6)); }
+.result-title { font-family: "Cinzel Decorative", "Cinzel", serif; font-weight: 900; font-size: 26px; letter-spacing: 2px; }
+.result.good .result-title { color: #bcd9f5; text-shadow: 0 0 18px rgba(91,155,216,.6); }
+.result.good .result-crest .emblem { color: #bcd9f5; }
+.result.evil .result-title { color: #f1b3b8; text-shadow: 0 0 18px rgba(196,67,79,.6); }
+.result.evil .result-crest .emblem { color: #f1b3b8; }
+
+/* ============================ Toast ============================ */
+.toast {
+  position: fixed; bottom: 26px; left: 50%; transform: translateX(-50%);
+  background: linear-gradient(180deg, #2a1a1a, #1c1212); color: #ffc2c7;
+  border: 1px solid rgba(196,67,79,.5); padding: 11px 20px; border-radius: 10px;
+  font-size: 14px; opacity: 0; pointer-events: none; transition: opacity .3s; z-index: 30;
+  box-shadow: var(--shadow);
+}
+.toast.show { opacity: 1; }
+
+/* ===================== 开局：人数选择遮罩 ===================== */
+.setup-overlay {
+  position: fixed; inset: 0; z-index: 40;
+  display: grid; place-items: center;
+  background: rgba(6, 9, 18, .78); backdrop-filter: blur(3px);
+}
+.setup-overlay[hidden] { display: none; }
+.setup-modal {
+  width: min(440px, 92vw); text-align: center;
+  padding: 26px 26px 22px;
+}
+.setup-modal .crest-icon { width: 52px; height: 52px; color: var(--gold-bright); margin: 0 auto 6px; }
+.setup-modal h2 {
+  font-family: "Cinzel", serif; font-weight: 700; font-size: 20px;
+  letter-spacing: 2px; color: var(--gold-bright); margin: 2px 0 8px;
+}
+.setup-hint { color: var(--ink-dim); font-size: 14px; line-height: 1.6; margin-bottom: 16px; }
+.setup-counts {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px;
+}
+.btn.setup-num {
+  padding: 12px 0; font-size: 16px; font-family: "Cinzel", serif; letter-spacing: 1px;
+  color: var(--gold-bright); background: rgba(201,164,76,.08);
+  border: 1px solid var(--gold-line); box-shadow: none;
+}
+.btn.setup-num:hover { background: rgba(201,164,76,.16); }
+.btn.setup-num.active {
+  color: #14101f; background: linear-gradient(180deg, var(--gold-bright), var(--gold));
+  border-color: #7c6020; box-shadow: 0 0 16px rgba(243,220,151,.45);
+}
+.setup-detail {
+  min-height: 22px; color: var(--ink); font-size: 13.5px; line-height: 1.6;
+  margin-bottom: 18px; padding: 0 4px;
+}
+
+@media (max-width: 1120px) { main { grid-template-columns: 1fr; } }

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>阿瓦隆 Avalon · 圆桌的抉择</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Cinzel+Decorative:wght@700;900&family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- ===== 阿瓦隆背景：夜空 / 明月 / 远山 / 湖中城堡 ===== -->
+  <svg class="bg-art" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <defs>
+      <radialGradient id="moonGrad" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#fdf3d0"/><stop offset="70%" stop-color="#e8d49a"/>
+        <stop offset="100%" stop-color="#e8d49a" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="hillGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#0d1730"/><stop offset="100%" stop-color="#070b18"/>
+      </linearGradient>
+      <linearGradient id="lakeGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#16305a" stop-opacity=".6"/><stop offset="100%" stop-color="#0a1426" stop-opacity=".1"/>
+      </linearGradient>
+    </defs>
+    <circle cx="1080" cy="220" r="240" fill="url(#moonGrad)" opacity=".55"/>
+    <circle cx="1080" cy="220" r="120" fill="#fbf1ce" opacity=".85"/>
+    <g fill="#fff" opacity=".7">
+      <circle cx="180" cy="120" r="1.6"/><circle cx="320" cy="80" r="1.2"/><circle cx="500" cy="160" r="1.8"/>
+      <circle cx="680" cy="90" r="1.3"/><circle cx="240" cy="240" r="1.2"/><circle cx="60" cy="200" r="1.5"/>
+      <circle cx="820" cy="200" r="1.2"/><circle cx="1280" cy="120" r="1.6"/><circle cx="1360" cy="300" r="1.3"/>
+      <circle cx="940" cy="120" r="1.2"/><circle cx="420" cy="60" r="1.1"/>
+    </g>
+    <!-- 远山 -->
+    <path d="M0 560 L220 470 L420 540 L640 440 L860 540 L1080 470 L1280 540 L1440 480 L1440 900 L0 900 Z" fill="url(#hillGrad)" opacity=".9"/>
+    <!-- 湖中城堡剪影 -->
+    <g fill="#060912" opacity=".95" transform="translate(610,470)">
+      <rect x="60" y="40" width="100" height="120"/>
+      <rect x="30" y="70" width="40" height="90"/><rect x="150" y="70" width="40" height="90"/>
+      <path d="M30 70 l20 -34 20 34 z"/><path d="M150 70 l20 -34 20 34 z"/>
+      <path d="M60 40 l50 -42 50 42 z"/>
+      <rect x="100" y="-8" width="6" height="26"/><path d="M106 -8 l26 8 -26 8 z"/>
+      <rect x="44" y="96" width="12" height="20" fill="#0e1c3a"/><rect x="164" y="96" width="12" height="20" fill="#0e1c3a"/>
+      <rect x="96" y="84" width="14" height="24" fill="#0e1c3a"/>
+    </g>
+    <!-- 湖面 -->
+    <rect x="0" y="640" width="1440" height="260" fill="url(#lakeGrad)"/>
+  </svg>
+
+  <!-- ===== SVG 徽记精灵（角色纹章 / 盾牌 / 王冠 / 团徽） ===== -->
+  <svg class="svg-sprite" aria-hidden="true" focusable="false">
+    <symbol id="crest" viewBox="0 0 64 64">
+      <path d="M32 5 L54 13 V31 C54 45 44 55 32 60 C20 55 10 45 10 31 V13 Z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
+      <path d="M22 25 L42 45 M42 25 L22 45" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+      <path d="M26 18 h12 l-2 6 h-8 z" fill="currentColor"/><circle cx="32" cy="13" r="2" fill="currentColor"/>
+    </symbol>
+    <symbol id="em-figure" viewBox="0 0 64 64">
+      <circle cx="32" cy="24" r="11" fill="none" stroke="currentColor" stroke-width="3"/>
+      <path d="M13 53 C13 39 51 39 51 53" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="em-merlin" viewBox="0 0 64 64">
+      <path d="M32 8 L48 46 H16 Z" fill="currentColor" opacity=".18"/>
+      <path d="M32 8 L48 46 H16 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M12 46 H52" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+      <path d="M38 20 l1.6 4.6 4.8 .2 -3.8 2.9 1.4 4.6 -4-2.8 -4 2.8 1.4-4.6 -3.8-2.9 4.8-.2 z" fill="currentColor"/>
+    </symbol>
+    <symbol id="em-percival" viewBox="0 0 64 64">
+      <path d="M32 8 L52 15 V31 C52 43 43 51 32 56 C21 51 12 43 12 31 V15 Z" fill="currentColor" opacity=".18"/>
+      <path d="M32 8 L52 15 V31 C52 43 43 51 32 56 C21 51 12 43 12 31 V15 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M32 18 V44 M21 29 H43" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="em-loyal" viewBox="0 0 64 64">
+      <path d="M32 8 L52 15 V31 C52 43 43 51 32 56 C21 51 12 43 12 31 V15 Z" fill="currentColor" opacity=".18"/>
+      <path d="M32 8 L52 15 V31 C52 43 43 51 32 56 C21 51 12 43 12 31 V15 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M21 35 L32 26 L43 35 M21 43 L32 34 L43 43" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="em-assassin" viewBox="0 0 64 64">
+      <path d="M32 6 L36 38 L32 44 L28 38 Z" fill="currentColor"/>
+      <path d="M20 40 H44" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+      <path d="M30 42 V56 H34 V42 Z" fill="currentColor"/>
+    </symbol>
+    <symbol id="em-morgana" viewBox="0 0 64 64">
+      <path d="M42 10 A22 22 0 1 0 42 54 A17 17 0 1 1 42 10 Z" fill="currentColor"/>
+      <path d="M47 22 l1.5 4.3 4.5 .2 -3.6 2.7 1.3 4.3 -3.7-2.6 -3.7 2.6 1.3-4.3 -3.6-2.7 4.5-.2 z" fill="currentColor"/>
+    </symbol>
+    <symbol id="em-oberon" viewBox="0 0 64 64">
+      <path d="M8 32 C20 16 44 16 56 32 C44 48 20 48 8 32 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+      <circle cx="32" cy="32" r="8.5" fill="none" stroke="currentColor" stroke-width="3"/>
+      <circle cx="32" cy="32" r="3.2" fill="currentColor"/>
+    </symbol>
+    <symbol id="shield" viewBox="0 0 64 72">
+      <path d="M32 4 L58 13 V36 C58 52 46 64 32 70 C18 64 6 52 6 36 V13 Z"/>
+    </symbol>
+    <symbol id="crown" viewBox="0 0 64 64">
+      <path d="M8 46 L14 20 L24 35 L32 15 L40 35 L50 20 L56 46 Z" fill="currentColor"/>
+      <rect x="8" y="48" width="48" height="8" rx="2" fill="currentColor"/>
+    </symbol>
+  </svg>
+
+  <header>
+    <div class="brand">
+      <svg class="crest-icon"><use href="#crest"></use></svg>
+      <div class="brand-text">
+        <h1>AVALON</h1>
+        <span class="subtitle">阿瓦隆 · 圆桌的抉择</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <span id="llm-badge" class="badge" title="AI 玩家的决策后端"></span>
+      <span id="phase-badge" class="badge">加载中…</span>
+      <button id="new-game" class="btn btn-ghost">⚔ 新游戏</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- 左列 -->
+    <section class="col">
+      <div class="card">
+        <h2>圆桌骑士</h2>
+        <ul id="players" class="players"></ul>
+      </div>
+
+      <div class="card">
+        <h2>征程 · 任务进度</h2>
+        <div id="missions" class="missions"></div>
+        <div id="score" class="score"></div>
+        <div id="vote-track" class="vote-track"></div>
+      </div>
+    </section>
+
+    <!-- 中列：操作区 + 秘密信息 -->
+    <section class="col">
+      <div class="card" id="action-card">
+        <h2 id="action-title">行动区</h2>
+        <div id="action-body" class="action-body"></div>
+      </div>
+
+      <div class="card secret">
+        <h2>你的密令</h2>
+        <div id="private"></div>
+      </div>
+    </section>
+
+    <!-- 右列：发言、历史与日志 -->
+    <section class="col">
+      <div class="card">
+        <h2>密谈 · 发言与指控</h2>
+        <div id="chat" class="chat"></div>
+      </div>
+      <div class="card">
+        <h2>投票编年</h2>
+        <div id="vote-history" class="vote-history"></div>
+      </div>
+      <div class="card">
+        <h2>史册 · 游戏日志</h2>
+        <div id="log" class="log"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <!-- ===== 开局：人数选择遮罩 ===== -->
+  <div id="setup-overlay" class="setup-overlay" hidden>
+    <div class="setup-modal card">
+      <svg class="crest-icon"><use href="#crest"></use></svg>
+      <h2>选择本局人数</h2>
+      <p class="setup-hint">你将作为 1 名真人，与其余 AI 共同对局。请选择 5~10 人局：</p>
+      <div id="setup-counts" class="setup-counts"></div>
+      <div class="setup-detail" id="setup-detail"></div>
+      <div class="btn-row" style="justify-content:center">
+        <button id="setup-start" class="btn btn-primary" disabled>⚔ 开始对局</button>
+        <button id="setup-cancel" class="btn btn-ghost">取消</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
