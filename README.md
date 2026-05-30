@@ -1,5 +1,7 @@
 # 🏰 智弈阿瓦隆 Avalon Agent · 5~10 人局（1 真人 + 若干 AI）
 
+> 📖 [English README](README_English.md)
+
 一个以 **LangGraph 智能体框架为核心技术栈**的可运行阿瓦隆桌游程序。开局可任选 **5~10 人局**，
 1 名真人玩家与若干自治 AI 智能体共同对局，含全部特殊角色。每个 AI 玩家都是一个具备**私有记忆 + LLM 推理 + 结构化行动**
 的自治 Agent，其"感知→推理→行动"闭环用 **LangGraph StateGraph** 建模。
